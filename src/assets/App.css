@@ -1,0 +1,12 @@
+.content {
+    display: flex;
+}
+
+:root{
+    --primary: rgb(95, 25, 25);
+    --secondary: #2c313f;
+    --secondary-hover: #4c556e;
+    --secondary-active: #cccccc;
+    --background: #ffffff;
+    --background-detail: #ececec;
+}
