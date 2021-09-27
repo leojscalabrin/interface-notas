@@ -18,7 +18,7 @@ class FormRegister extends Component {
     this.text = event.target.value;
   }
 
-  _criateNote(event){
+  _createNote(event){
     event.preventDefault();
     event.stopPropagation();
     this.props.createNote(this.title, this.text);
@@ -26,7 +26,7 @@ class FormRegister extends Component {
 
   render() {
     return (
-      <form className="form-register" onSubmit={this.createNote.binds(this)}>
+      <form className="form-register" onSubmit={this._createNote.bind(this)}>
         <input type="text" placeholder="Título" className='form-register_input' onChange={this._handleTitleChange.bind(this)} />
         <textarea rows={15} placeholder="Escreva sua nota:" className='form-register_input' onChange={this._handleTextChange.bind(this)} />
         <button className="form-register_input form-register_submit">Criar nota</button>

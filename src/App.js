@@ -8,18 +8,25 @@ class App extends Component {
 
   constructor(){
     super();
-    this.notes = [];
+    this.state = {
+      notes: []
+    }
   }
+
   createNote(title, text){
     const newNote = {title, text};
-    this.notes.push(newNote);
+    const newNoteArray = [...this.state.notes, newNote]
+    const newState = {
+      notes: newNoteArray
+    }
+    this.setState(newState)
   }
 
   render(){
     return (
       <section className="content">
         <FormRegister createNote={this.createNote.bind(this)} />
-        <NoteList notes={this.notes} />
+        <NoteList notes={this.state.notes} />
       </section>
     );
   }
