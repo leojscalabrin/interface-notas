@@ -12,9 +12,22 @@
     max-width: 240px;
     max-height: 400px;
     display: inline;
+    animation: addNote 300ms ease-in;
   }
 
   .note-list_item:hover {
       transform: scale(115%);
       transition-duration: 250ms;
+  }
+
+  @keyframes addNote{
+    33%{
+      transform: scale(140%);
+    }
+    66%{
+      transform: scale(130%);
+    }
+    100%{
+      transform: scale(120%);
+    }
   }
