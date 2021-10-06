@@ -14,8 +14,8 @@ class App extends Component {
     };
   }
 
-  createNote(title, text) {
-    const newNote = { title, text };
+  createNote(title, text, category) {
+    const newNote = { title, text, category };
     const newNoteArray = [...this.state.notes, newNote];
     const newState = {
       notes: newNoteArray,
@@ -23,9 +23,9 @@ class App extends Component {
     this.setState(newState);
   }
 
-  addCategory(categoryName){
-    const newCategoryArray = [...this.state.categories, categoryName]
-    const newState = {...this.state, categories: newCategoryArray};
+  addCategory(categoryName) {
+    const newCategoryArray = [...this.state.categories, categoryName];
+    const newState = { ...this.state, categories: newCategoryArray };
     this.setState(newState);
   }
 
@@ -38,7 +38,10 @@ class App extends Component {
   render() {
     return (
       <section className="content">
-        <FormRegister createNote={this.createNote.bind(this)} />
+        <FormRegister
+          categories={this.state.categories}
+          createNote={this.createNote.bind(this)}
+        />
         <main className="main-content">
           <CategoryList
             addCategory={this.addCategory.bind(this)}
