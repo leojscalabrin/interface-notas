@@ -4,52 +4,31 @@ import NoteList from "./components/NoteList/NoteList.jsx";
 import CategoryList from "./components/CategoryList/CategoryList.jsx";
 import "./assets/App.css";
 import "./assets/index.css";
+import Categories from "./data/Categories.js";
+import NoteArray from "./data/Notes.js";
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      notes: [],
-      categories: [],
-    };
-  }
-
-  createNote(title, text, category) {
-    const newNote = { title, text, category };
-    const newNoteArray = [...this.state.notes, newNote];
-    const newState = {
-      notes: newNoteArray,
-    };
-    this.setState(newState);
-  }
-
-  addCategory(categoryName) {
-    const newCategoryArray = [...this.state.categories, categoryName];
-    const newState = { ...this.state, categories: newCategoryArray };
-    this.setState(newState);
-  }
-
-  deleteNote(index) {
-    let noteArray = this.state.notes;
-    noteArray.splice(index, 1);
-    this.setState({ notes: noteArray });
+    this.categories = new Categories();
+    this.notes = new NoteArray();
   }
 
   render() {
     return (
       <section className="content">
         <FormRegister
-          categories={this.state.categories}
-          createNote={this.createNote.bind(this)}
+          categories={this.categories.categories}
+          createNote={this.notes.createNote}
         />
         <main className="main-content">
           <CategoryList
-            addCategory={this.addCategory.bind(this)}
-            categories={this.state.categories}
+            addCategory={this.categories.addCategory}
+            categories={this.categories.categories}
           />
           <NoteList
-            removeNote={this.deleteNote.bind(this)}
-            notes={this.state.notes}
+            removeNote={this.notes.deleteNote}
+            notes={this.notes.notes}
           />
         </main>
       </section>
