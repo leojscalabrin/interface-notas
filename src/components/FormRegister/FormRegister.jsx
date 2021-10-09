@@ -7,6 +7,20 @@ class FormRegister extends Component {
     this.title = "";
     this.text = "";
     this.category = "Sem Categoria";
+    this.state= {categories:[]};
+    this._newCategories = this._newCategories.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.categories.register(this._newCategorie);
+  }
+
+  componentWillUnmount(){
+    this.props.categories.unregister(this._newCategorie);
+  }
+
+  _newCategories(categories){
+    this.setState({...this.state, categories})
   }
 
   _handleCategoryChange(event) {
@@ -38,8 +52,8 @@ class FormRegister extends Component {
           className="form-register_input"
         >
           <option>Sem Categoria</option>
-          {this.props.categories.map((category) => {
-            return <option>{category}</option>;
+          {this.state.categories.map((category, index) => {
+            return <option key={index}>{category}</option>;
           })}
         </select>
         <input
